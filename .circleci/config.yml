@@ -10,7 +10,7 @@ jobs:
       - save_cache:
           key: "npm-packages"
           paths:
-            - /src/node_modules
+            - /node_modules
       - run: npm run lint
   test:
     docker:
@@ -30,12 +30,12 @@ jobs:
       - run: npm audit
 
 workflows:
-  code_workflow:
+  my_workflow:
     jobs:
       - build
       - test:
-        requires:
-          - build
+          requires:
+            - build
       - analyze:
-        requires:
-          - test
+          requires:
+            - test
